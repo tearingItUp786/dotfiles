@@ -52,3 +52,4 @@ local mappings = {
 }
 
 wk.register(mappings, { prefix = "<leader>" })
+wk.setup({})

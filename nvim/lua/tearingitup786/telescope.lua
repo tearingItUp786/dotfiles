@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
+telescope.load_extension("live_grep_args")
 telescope.setup({
 	defaults = {
 		mappings = {

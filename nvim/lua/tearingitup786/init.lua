@@ -1,4 +1,7 @@
 require("tearingitup786.lazy")
+require("tearingitup786.copilot")
+require("tearingitup786.nvim-tmux-navigation")
+require("tearingitup786.dashboard")
 require("tearingitup786.colors")
 require("tearingitup786.hologram")
 require("tearingitup786.nvim-tree")
