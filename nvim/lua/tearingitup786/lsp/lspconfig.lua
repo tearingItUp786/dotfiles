@@ -97,6 +97,12 @@ lspconfig["jsonls"].setup({
 	on_attach = on_attach,
 })
 
+-- configure yaml server
+lspconfig["yamlls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure go server
 lspconfig["gopls"].setup({
 	capabilities = capabilities,
