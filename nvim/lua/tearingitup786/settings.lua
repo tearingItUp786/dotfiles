@@ -30,3 +30,5 @@ vim.g.mapleader = " "
 --
 -- -- allow us to open a browser for links
 keymap("n", "gx", "<Plug>(openbrowser-smart-search)", options)
+
+o.clipboard = "unnamedplus"
