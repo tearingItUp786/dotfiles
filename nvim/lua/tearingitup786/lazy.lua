@@ -15,6 +15,7 @@ vim.g.maplocalleader = " "
 
 return require("lazy").setup({
 	-- "tanvirtin/monokai.nvim",
+	"loctvl842/monokai-pro.nvim",
 	"folke/tokyonight.nvim",
 	"EdenEast/nightfox.nvim",
 	"xiyaowong/nvim-transparent",
