@@ -161,7 +161,6 @@ return require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			require("chatgpt").setup({
-				api_key_cmd = "echo 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",
 				yank_register = "+",
 				edit_with_instructions = {
 					diff = false,
@@ -299,7 +298,7 @@ return require("lazy").setup({
 				actions_paths = {},
 				show_quickfixes_cmd = "Trouble quickfix",
 				predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
-				-- api_key_cmd = "op read op://private/OpenAI/credential --no-newline",
+				api_key_cmd = "op read op://private/OpenAI/credential --no-newline",
 			})
 		end,
 		dependencies = {
