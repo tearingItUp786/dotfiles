@@ -9,7 +9,7 @@ end
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
+-- local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
 	debug = false,
@@ -23,7 +23,7 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.cspell,
 		null_ls.builtins.code_actions.cspell,
 		-- diagnostics.flake8,
-		diagnostics.spellcheck,
+		-- diagnostics.spellcheck,
 	},
 	on_attach = function(client, bufnr)
 		print("null-ls attached")

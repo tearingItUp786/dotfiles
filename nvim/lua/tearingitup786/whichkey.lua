@@ -10,6 +10,7 @@ end
 local mappings = {
 	c = {
 		name = "ChatGPT",
+		i = { ":ChatGPTActAs<CR>", "Act as someone" },
 		c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
 		e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
 		g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
