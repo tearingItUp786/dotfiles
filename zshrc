@@ -121,6 +121,7 @@ alias src="source ~/.zshrc"
 alias esrc="nvim ~/.zshrc"
 alias cheatsheet="nvim ~/Desktop/editor-cheatsheet.md"
 alias gcopybranch="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
+alias notifyme="ntfy publish tearingitup786 $1"
 
 # export NODE_TLS_REJECT_UNAUTHORIZED=0
 export VOLTA_HOME="$HOME/.volta"
