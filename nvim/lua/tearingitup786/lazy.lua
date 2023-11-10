@@ -19,15 +19,15 @@ return require("lazy").setup({
 	"folke/tokyonight.nvim",
 	-- "EdenEast/nightfox.nvim",
 	{ "catppuccin/nvim", as = "catppuccin-mocha" },
-	"xiyaowong/nvim-transparent",
+	-- "xiyaowong/nvim-transparent",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 	"hrsh7th/cmp-buffer", -- buffer completions
 	"hrsh7th/cmp-path", -- path completions
 	"hrsh7th/cmp-cmdline", -- cmdline completions
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
-	"hrsh7th/cmp-emoji",
+	-- "saadparwaiz1/cmp_luasnip", -- snippet completions
+	-- "hrsh7th/cmp-emoji",
 	"hrsh7th/cmp-nvim-lua",
 	"tyru/open-browser.vim",
 	"karb94/neoscroll.nvim",
@@ -38,7 +38,7 @@ return require("lazy").setup({
 	"onsails/lspkind.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"L3MON4D3/LuaSnip", --snippet engine
-	"rafamadriz/friendly-snippets", -- a bunch of snippets to use
+	-- "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 	"folke/which-key.nvim",
 	"alexghergh/nvim-tmux-navigation",
 	"mechatroner/rainbow_csv",
@@ -53,7 +53,7 @@ return require("lazy").setup({
 		},
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
@@ -81,7 +81,7 @@ return require("lazy").setup({
 			require("nvim-surround").setup({})
 		end,
 	},
-	{ "edluffy/hologram.nvim" },
+	-- { "edluffy/hologram.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{
 		"nvim-lualine/lualine.nvim",
@@ -187,7 +187,6 @@ return require("lazy").setup({
 	},
 	{
 		"glepnir/dashboard-nvim",
-		event = "VimEnter",
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 })
