@@ -178,7 +178,11 @@ return require("lazy").setup({
 	{
 		"nvimdev/lspsaga.nvim",
 		config = function()
-			require("lspsaga").setup({})
+			require("lspsaga").setup({
+				symbol_in_winbar = {
+					folder_level = 5,
+				},
+			})
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -189,4 +193,5 @@ return require("lazy").setup({
 		"glepnir/dashboard-nvim",
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
+	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" }, -- for markdown previewing
 })

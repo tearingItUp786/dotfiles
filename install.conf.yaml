@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/.profile: profile
@@ -14,3 +14,4 @@
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
     ~/Desktop/editor-cheatsheet.md: editor-cheatsheet.md
+    ~/.config/kitty/kitty.conf: kitty.conf
