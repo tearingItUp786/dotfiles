@@ -26,8 +26,8 @@ return require("lazy").setup({
 	"hrsh7th/cmp-buffer", -- buffer completions
 	"hrsh7th/cmp-path", -- path completions
 	"hrsh7th/cmp-cmdline", -- cmdline completions
-	-- "saadparwaiz1/cmp_luasnip", -- snippet completions
-	-- "hrsh7th/cmp-emoji",
+	"saadparwaiz1/cmp_luasnip", -- snippet completions
+	"hrsh7th/cmp-emoji",
 	"hrsh7th/cmp-nvim-lua",
 	"tyru/open-browser.vim",
 	"karb94/neoscroll.nvim",
@@ -37,8 +37,14 @@ return require("lazy").setup({
 	"rhysd/git-messenger.vim",
 	"onsails/lspkind.nvim",
 	"hrsh7th/cmp-nvim-lsp",
-	"L3MON4D3/LuaSnip", --snippet engine
-	-- "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
+		-- "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+	},
 	"folke/which-key.nvim",
 	"alexghergh/nvim-tmux-navigation",
 	"mechatroner/rainbow_csv",
@@ -160,6 +166,9 @@ return require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			require("chatgpt").setup({
+				openai_params = {
+					model = "gpt-4-1106-preview",
+				},
 				api_key_cmd = "op read op://private/OpenAI/credential --no-newline",
 			})
 		end,
