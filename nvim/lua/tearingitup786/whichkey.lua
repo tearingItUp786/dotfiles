@@ -7,64 +7,50 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local mappings = {
-	c = {
-		name = "ChatGPT",
-		i = { ":ChatGPTActAs<CR>", "Act as someone" },
-		c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-		e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
-		g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
-		t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
-		k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
-		d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
-		a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
-		o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
-		s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
-		f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
-		x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
-		r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
-		l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+wk.add({
+	{ "<leader>b", group = "buffer commands" },
+	{ "<leader>bd", "<cmd>bd<cr>", desc = "Delete buffer" },
+	{ "<leader>c", group = "ChatGPT" },
+	{ "<leader>cc", "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
+	{ "<leader>ci", ":ChatGPTActAs<CR>", desc = "Act as someone" },
+	{ "<leader>g", group = "git" },
+	{ "<leader>gg", "<cmd>GitMessenger<CR>", desc = "Git Messenger" },
+	{ "<leader>gl", "<cmd>lua LAZYGIT_TOGGLE()<CR>", desc = "Lazy git" },
+	{ "<leader>gc", "<cmd>:CopilotChat<CR>", desc = "CopilotChat" },
+	{ "<leader>n", group = "nvimtree" },
+	{ "<leader>nf", ":NvimTreeFocus<CR>", desc = "Focus" },
+	{ "<leader>nn", ":NvimTreeToggle<CR>", desc = "Toggle" },
+	{ "<leader>q", group = "quit" },
+	{ "<leader>qd", "<cmd>bd<cr>", desc = "Delete buffer" },
+	{ "<leader>qq", "<cmd>q<cr>", desc = "Quit" },
+	{ "<leader>qw", "<cmd>w<cr>", desc = "Write" },
+	{ "<leader>qx", "<cmd>x<cr>", desc = "Write and Quit" },
+	{ "<leader>s", group = "split" },
+	{ "<leader>sh", "<cmd>split<cr>", desc = "Horizontal Split" },
+	{ "<leader>sv", "<cmd>vsplit<cr>", desc = "Vertical Split" },
+	{ "<leader>t", group = "Telescope" },
+	{ "<leader>tb", ":Telescope buffers<CR>", desc = "Telescope buffers" },
+	{ "<leader>tf", ":Telescope find_files<CR>", desc = "Telescope Find File" },
+	{
+		"<leader>tg",
+		":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+		desc = "Telescope Live Grep",
 	},
-	t = {
-		name = "Telescope",
-		f = { ":Telescope find_files<CR>", "Telescope Find File" },
-		g = { ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Telescope Live Grep" },
-		b = { ":Telescope buffers<CR>", "Telescope buffers" },
-		h = { ":Telescope help_tags<CR>", "Telescope help tags" },
+	{ "<leader>th", ":Telescope help_tags<CR>", desc = "Telescope help tags" },
+	{
+		mode = { "n", "v" },
+		{ "<leader>ca", "<cmd>ChatGPTRun add_tests<CR>", desc = "Add Tests" },
+		{ "<leader>cd", "<cmd>ChatGPTRun docstring<CR>", desc = "Docstring" },
+		{ "<leader>ce", "<cmd>ChatGPTEditWithInstruction<CR>", desc = "Edit with instruction" },
+		{ "<leader>cf", "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs" },
+		{ "<leader>cg", "<cmd>ChatGPTRun grammar_correction<CR>", desc = "Grammar Correction" },
+		{ "<leader>ck", "<cmd>ChatGPTRun keywords<CR>", desc = "Keywords" },
+		{ "<leader>cl", "<cmd>ChatGPTRun code_readability_analysis<CR>", desc = "Code Readability Analysis" },
+		{ "<leader>co", "<cmd>ChatGPTRun optimize_code<CR>", desc = "Optimize Code" },
+		{ "<leader>cr", "<cmd>ChatGPTRun roxygen_edit<CR>", desc = "Roxygen Edit" },
+		{ "<leader>cs", "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize" },
+		{ "<leader>ct", "<cmd>ChatGPTRun translate<CR>", desc = "Translate" },
+		{ "<leader>cx", "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code" },
 	},
-	s = {
-		name = "split",
-		v = { "<cmd>vsplit<cr>", "Vertical Split" },
-		h = { "<cmd>split<cr>", "Horizontal Split" },
-	},
-	n = {
-		name = "nvimtree",
-		n = { ":NvimTreeToggle<CR>", "Toggle" },
-		f = { ":NvimTreeFocus<CR>", "Focus" },
-	},
-	q = {
-		name = "quit",
-		d = { "<cmd>bd<cr>", "Delete buffer" },
-		q = { "<cmd>q<cr>", "Quit" },
-		w = { "<cmd>w<cr>", "Write" },
-		x = { "<cmd>x<cr>", "Write and Quit" },
-	},
-	b = {
-		name = "buffer commands",
-		d = { "<cmd>bd<cr>", "Delete buffer" },
-	},
-	g = {
-		name = "git",
-		l = {
-			"<cmd>lua LAZYGIT_TOGGLE()<CR>",
-			"Lazy git",
-		},
-		g = {
-			"<cmd>GitMessenger<CR>",
-			"Git Messenger",
-		},
-	},
-}
-
-wk.register(mappings, { prefix = "<leader>" })
+})
 wk.setup({})
