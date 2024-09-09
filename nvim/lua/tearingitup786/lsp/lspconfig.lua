@@ -53,7 +53,7 @@ local on_attach = function(client, bufnr)
 		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
 	end ]]
 
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		keymap.set("n", "<leader>oi", ":OrganizeImports<CR>")
 	end
 end
@@ -83,7 +83,7 @@ local function organize_imports()
 	vim.lsp.buf.execute_command(params)
 end
 
-lspconfig["tsserver"].setup({
+lspconfig["ts_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	commands = {

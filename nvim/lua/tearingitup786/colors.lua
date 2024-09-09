@@ -46,16 +46,16 @@
 -- })
 -- vim.cmd([[colorscheme monokai-pro]])
 
--- require("tokyonight").setup({
--- 	style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
--- 	transparent = true,
--- 	styles = {
--- 		sidebars = "transparent",
--- 		floats = "transparent",
--- 	},
--- })
---
--- vim.cmd([[colorscheme tokyonight]])
+require("tokyonight").setup({
+	style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+	transparent = true,
+	styles = {
+		sidebars = "transparent",
+		floats = "transparent",
+	},
+})
+
+vim.cmd([[colorscheme tokyonight]])
 
 --[[ require("nightfox").setup({
 	options = {
@@ -94,7 +94,7 @@
 
 vim.cmd("colorscheme carbonfox") ]]
 
-require("catppuccin").setup({
+--[[ require("catppuccin").setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
 	background = { -- :h background
 		light = "latte",
@@ -139,4 +139,4 @@ require("catppuccin").setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme("catppuccin")
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme catppuccin") ]]
