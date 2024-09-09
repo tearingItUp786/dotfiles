@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting git web-search sudo)
+plugins=(zsh-syntax-highlighting git sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -126,10 +125,13 @@ alias notifyme="ntfy publish tearingitup786 $1"
 # export NODE_TLS_REJECT_UNAUTHORIZED=0
 export VOLTA_HOME="$HOME/.volta"
 export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
+export KITBIN="$HOME/.kit"
+export KENV="$HOME/.kenv"
+export PATH="$KITBIN/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc'; fi
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme

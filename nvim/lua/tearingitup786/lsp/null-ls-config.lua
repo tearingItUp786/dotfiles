@@ -21,7 +21,7 @@ null_ls.setup({
 		formatting.stylua,
 		-- formatting.google_java_format,
 		-- null_ls.builtins.diagnostics.cspell,
-		null_ls.builtins.code_actions.cspell,
+		-- null_ls.builtins.code_actions.cspell,
 		-- diagnostics.flake8,
 		-- diagnostics.spellcheck,
 	},

@@ -64,18 +64,18 @@ return require("lazy").setup({
 	},
 	{
 		"christianchiarulli/nvim-cmp",
-		dependencies = {
-			{
-				"zbirenbaum/copilot-cmp",
-				opts = {},
-			},
-		},
+		-- dependencies = {
+		-- 	{
+		-- 		"zbirenbaum/copilot-cmp",
+		-- 		opts = {},
+		-- 	},
+		-- },
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- },
 	{
 		"nvim-telescope/telescope.nvim",
 		-- or                            , branch = '0.1.x',
@@ -203,4 +203,11 @@ return require("lazy").setup({
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" }, -- for markdown previewing
+	-- code compleition
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({})
+		end,
+	},
 })
