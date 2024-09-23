@@ -13,5 +13,7 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
+    ~/.config/home: nvim-home
+    ~/.config/work: nvim-work
     ~/Desktop/editor-cheatsheet.md: editor-cheatsheet.md
     ~/.config/kitty/kitty.conf: kitty.conf

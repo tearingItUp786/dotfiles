@@ -167,7 +167,7 @@ return require("lazy").setup({
 		config = function()
 			require("chatgpt").setup({
 				openai_params = {
-					model = "gpt-4-1106-preview",
+					model = "gpt-4o",
 				},
 				api_key_cmd = "op read op://private/OpenAI/credential --no-newline",
 			})

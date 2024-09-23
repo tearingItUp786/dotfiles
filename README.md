@@ -21,9 +21,34 @@ Clone this repo and after `cding` into it, run `./install`.
 ## neovim
 
 1. `brew install neovim`
-2. Install packer
-3. Run `PackerSync`
-4. Run `:MasonInstall`
+
+### Managing configs
+
+The way in which I manage my neovim configs is by using a function inside of my `zshrc` file.
+
+```zsh
+function nvims() {
+  items=("default" "home")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+```
+
+This function will show a list of configs that I have in my `~/.config` folder and only those that are in the items array will be shown.
+
+I did this so that I can have a WIP config that I can quickly switch to when I'm working on something and a "get shit done" mode that I can switch to when I don't have time to play around.
+
+https://www.youtube.com/watch?v=LkHjJlSgKZY
+
+### Work profile
+
+Work forces use to use copilot and not supermaven. I'll need to follow [this repo](https://github.com/github/copilot.vim)
 
 ## tmux
 
