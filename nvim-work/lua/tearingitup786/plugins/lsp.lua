@@ -9,7 +9,17 @@ return {
 	},
 	config = function()
 		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- local capabilities = require("cmp_nvim_lsp").default_capabilities({})
+
+		-- we need to do this so that we stop seeing this issue
+		-- https://github.com/neovim/neovim/issues/26520
+		local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
+			workspace = {
+				didChangeWatchedFiles = {
+					dynamicRegistration = false,
+				},
+			},
+		})
 
 		local lspconfig = require("lspconfig")
 
@@ -77,6 +87,7 @@ return {
 			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
+					css = { { "prettierd", "prettier" } },
 					typescript = { { "prettierd", "prettier" } },
 					typescriptreact = { { "prettierd", "prettier" } },
 					javascript = { { "prettierd", "prettier" } },
@@ -85,9 +96,12 @@ return {
 			})
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*",
 				callback = function(args)
-					conform.format({ bufnr = args.buf, lsp_fallback = false })
+					require("conform").format({
+						bufnr = args.buf,
+						lsp_fallback = false,
+						quiet = true,
+					})
 				end,
 			})
 		end
