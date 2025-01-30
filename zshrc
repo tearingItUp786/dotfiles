@@ -152,3 +152,5 @@ if [ -f '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc'; fi
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+eval "$(zoxide init zsh)"
