@@ -109,6 +109,8 @@ source $ZSH/oh-my-zsh.sh
 
 alias nvim-home="NVIM_APPNAME=home nvim"
 alias nvim-work="NVIM_APPNAME=work nvim"
+alias cd="z"
+alias pn="pnpm"
 
 function nvims() {
   items=("default" "home" "work")
