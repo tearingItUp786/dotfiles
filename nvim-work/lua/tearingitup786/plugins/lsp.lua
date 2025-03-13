@@ -85,13 +85,14 @@ return {
 			-- Autoformatting Setup
 			local conform = require("conform")
 			conform.setup({
+				stop_after_first = true,
 				formatters_by_ft = {
 					lua = { "stylua" },
-					css = { { "prettierd", "prettier" } },
-					typescript = { { "prettierd", "prettier" } },
-					typescriptreact = { { "prettierd", "prettier" } },
-					javascript = { { "prettierd", "prettier" } },
-					javascriptreact = { { "prettierd", "prettier" } },
+					css = { "prettierd" },
+					typescript = { "prettierd" },
+					typescriptreact = { "prettierd" },
+					javascript = { "prettierd" },
+					javascriptreact = { "prettierd" },
 				},
 			})
 

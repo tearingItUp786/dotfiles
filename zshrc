@@ -140,13 +140,29 @@ alias esrc="nvim ~/.zshrc"
 alias cheatsheet="nvim ~/Desktop/editor-cheatsheet.md"
 alias gcopybranch="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
 alias notifyme="ntfy publish tearingitup786 $1"
+alias copytar="find . -maxdepth 1 -name \"*.tgz\" -exec realpath {} \; | pbcopy"
+jesto() {
+  npx jest --config=legacy.jest.config.ts "$@"
+}
 
-# export NODE_TLS_REJECT_UNAUTHORIZED=0
+ujesto() {
+  npx jest --updateSnapshot --config=legacy.jest.config.ts "$@"
+}
+
+export VOLTA_FEATURE_PNPM=1
+export NODE_TLS_REJECT_UNAUTHORIZED=0
 export VOLTA_HOME="$HOME/.volta"
 export GOPATH=$HOME/go
 export KITBIN="$HOME/.kit"
 export KENV="$HOME/.kenv"
 export PATH="$KITBIN/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
+export KITPATH="$HOME/.kit"
+export KENV="$HOME/.kenv"
+export DOCKER="$HOME/.docker"
+# Had to install the test version of neovim version 0.11 to fix issues I'm having
+# export NEOVIM_DEV="$HOME/Downloads/nvim-macos-arm64"
+# export PATH="$NEOVIM_DEV/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
+export PATH="$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc'; fi
@@ -156,3 +172,9 @@ if [ -f '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 eval "$(zoxide init zsh)"
+# bun completions
+[ -s "/Users/tarabain/.bun/_bun" ] && source "/Users/tarabain/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
