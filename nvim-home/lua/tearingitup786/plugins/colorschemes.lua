@@ -1,31 +1,17 @@
 return {
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	config = function()
-	-- 		require("tokyonight").setup({
-	-- 			style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-	-- 			transparent = true,
-	-- 			styles = {
-	-- 				sidebars = "transparent",
-	-- 				floats = "transparent",
-	-- 			},
-	-- 		})
-	--
-	-- 		vim.cmd([[colorscheme tokyonight]])
-	-- 	end,
-	-- },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+
 		config = function()
 			require("catppuccin").setup({
-				flavour = "auto", -- latte, frappe, macchiato, mocha
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
 				background = { -- :h background
 					light = "latte",
 					dark = "mocha",
 				},
-				transparent_background = false, -- disables setting the background color.
+				transparent_background = true, -- disables setting the background color.
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				dim_inactive = {
@@ -72,4 +58,19 @@ return {
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	config = function()
+	-- 		require("tokyonight").setup({
+	-- 			style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+	-- 			transparent = true,
+	-- 			styles = {
+	-- 				sidebars = "transparent",
+	-- 				floats = "transparent",
+	-- 			},
+	-- 		})
+	--
+	-- 		vim.cmd([[colorscheme tokyonight]])
+	-- 	end,
+	-- },
 }
