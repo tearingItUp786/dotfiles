@@ -17,3 +17,4 @@
     ~/.config/work: nvim-work
     ~/Desktop/editor-cheatsheet.md: editor-cheatsheet.md
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/ghostty/config: ghosty.conf

@@ -179,7 +179,7 @@
 				<real>0.0</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string>/Users/taranveerbains/Pictures/wp3240052-fourth-hokage-wallpaper.jpeg</string>
+			<string>/Users/taranveerbains/Pictures/frieren.jpeg</string>
 			<key>Background Image Mode</key>
 			<integer>3</integer>
 			<key>Badge Color</key>
@@ -196,7 +196,7 @@
 				<real>1</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.1917416779891305</real>
+			<real>0.30006843065693434</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -801,7 +801,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.15316655585106384</real>
+			<real>0.25340401785714284</real>
 			<key>Unicode Version</key>
 			<integer>9</integer>
 			<key>Unlimited Scrollback</key>

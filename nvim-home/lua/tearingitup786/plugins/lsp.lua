@@ -88,7 +88,7 @@ return {
 			conform.setup({
 				stop_after_first = true,
 				formatters_by_ft = {
-					lua = { "stylua" },
+					lua = { "stylua", stop_after_first = true },
 					css = { "prettierd", "prettier", stop_after_first = true },
 					typescript = { "prettierd", "prettier", stop_after_first = true },
 					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
