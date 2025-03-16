@@ -1,4 +1,4 @@
-local command = "op read op://private/OpenAI/credential --no-newline"
+local command = "op read op://private/OpenAIKey/credential --no-newline"
 local handle = io.popen(command, "r")
 local result = handle:read("*a") -- Read the entire output as a string
 handle:close()
