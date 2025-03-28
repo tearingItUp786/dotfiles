@@ -1,26 +1,19 @@
-local command = "op read op://private/OpenAIKey/credential --no-newline"
-local handle = io.popen(command, "r")
-local result = handle:read("*a") -- Read the entire output as a string
-handle:close()
-
-local claude_command = "op read op://private/Claude/credential --no-newline"
-local claude_handle = io.popen(claude_command, "r")
-local claude_result = claude_handle:read("*a") -- Read the entire output as a string
-claude_handle:close()
-
 return {
 	"robitx/gp.nvim",
 	config = function()
+		local anthropic_key = os.getenv("ANTHROPIC_API_KEY") or ""
+		local openai_key = os.getenv("OPENAI_API_KEY") or ""
+
 		local conf = {
 			-- For customization, refer to Install > Configuration in the Documentation/Readme
 			providers = {
 				anthropic = {
 					endpoint = "https://api.anthropic.com/v1/messages",
-					secret = claude_result,
+					secret = anthropic_key,
 				},
 				openai = {
 					endpoint = "https://api.openai.com/v1/chat/completions",
-					secret = result,
+					secret = openai_key,
 				},
 			},
 			agents = {
