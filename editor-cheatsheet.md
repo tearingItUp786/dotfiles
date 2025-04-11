@@ -19,7 +19,7 @@
 
 ### Command mode
 
-`:%y+` - copies all the file contents. The `%` makes the next command run on all lines and `+` copies it to the system clipboad as well.
+`:%y+` - copies all the file contents. The `%` makes the next command run on all lines and `+` copies it to the system clipboard as well.
 `:(+/-)relative_line_number,(+/-)relative_line_number y` - yank based on relative lines
 `<C + F>` - show previous commands
 

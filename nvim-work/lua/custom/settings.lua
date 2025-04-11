@@ -32,3 +32,6 @@ vim.g.mapleader = " "
 keymap("n", "gx", "<Plug>(openbrowser-smart-search)", options)
 
 o.clipboard = "unnamedplus"
+
+o.spell = true
+o.spelllang = "en_ca"
