@@ -9,7 +9,6 @@
     ~/.profile: profile
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
-    ~/.vimrc: vimrc
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
@@ -17,4 +16,14 @@
     ~/.config/work: nvim-work
     ~/Desktop/editor-cheatsheet.md: editor-cheatsheet.md
     ~/.config/kitty/kitty.conf: kitty.conf
-    ~/.config/ghostty/config: ghosty.conf
+    ~/.config/ghostty/config: ghostty.conf
+
+- shell:
+  - 
+     command: ./setup_homebrew.sh
+     description: Install packages from Brewfile
+     stdin: true
+     stdout: true
+     stderr: true
+
+

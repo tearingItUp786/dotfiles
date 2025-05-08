@@ -13,22 +13,22 @@ return {
 				-- 	temperature = 0,
 				-- 	max_tokens = 8192,
 				-- },
-				-- provider = "gemini",
-				-- gemini = {
-				-- 	model = "gemini-2.5-pro-exp-03-25", -- your desired model (or use gpt-4o, etc.)
-				-- 	timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-				-- 	temperature = 0,
-				-- 	api_key_name = "GEMINI_API_KEY",
-				-- 	max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-				-- 	--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-				-- },
-				provider = "claude",
-				claude = {
-					endpoint = "https://api.anthropic.com",
-					model = "claude-3-5-haiku-20241022",
+				provider = "gemini",
+				gemini = {
+					model = "gemini-2.5-pro-exp-03-25", -- your desired model (or use gpt-4o, etc.)
+					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
 					temperature = 0,
-					max_tokens = 4096,
+					api_key_name = "GEMINI_API_KEY",
+					max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+					--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
 				},
+				-- provider = "claude",
+				-- claude = {
+				-- 	endpoint = "https://api.anthropic.com",
+				-- 	model = "claude-3-5-haiku-20241022",
+				-- 	temperature = 0,
+				-- 	max_tokens = 4096,
+				-- },
 				-- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
 				system_prompt = function()
 					local hub = require("mcphub").get_hub_instance()
