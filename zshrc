@@ -109,11 +109,12 @@ source $ZSH/oh-my-zsh.sh
 
 alias nvim-home="NVIM_APPNAME=home nvim"
 alias nvim-work="NVIM_APPNAME=work nvim"
+alias nvim="nvim-home"
 alias cd="z"
 alias pn="pnpm"
 
 function nvims() {
-  items=("default" "home" "work")
+  items=("home" "work" "default")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
@@ -149,8 +150,13 @@ ujesto() {
   npx jest --updateSnapshot --config=legacy.jest.config.ts "$@"
 }
 
+alias twiliolastmessage="twilio api:core:messages:list --limit 1 --properties sid -o json | jq -r '.[0].sid' | xargs -I {} twilio api:core:messages:fetch --sid {} --properties body"
+
+export ANTHROPIC_API_KEY=$(op read op://private/Claude/credential --no-newline)
+export OPENAI_API_KEY=$(op read op://private/OpenAIKey/credential --no-newline)
+export GEMINI_API_KEY=$(op read op://private/GeminiAPIKey/credential --no-newline)
 export VOLTA_FEATURE_PNPM=1
-export NODE_TLS_REJECT_UNAUTHORIZED=0
+export NODE_TLS_REJECT_UNAUTHORIZED=1
 export VOLTA_HOME="$HOME/.volta"
 export GOPATH=$HOME/go
 export KITBIN="$HOME/.kit"

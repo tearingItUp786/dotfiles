@@ -22,7 +22,7 @@ return {
 		-- 	},
 		-- })
 
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		local servers = {
 			cssls = true,
@@ -31,6 +31,9 @@ return {
 			lua_ls = true,
 			tailwindcss = true,
 			ts_ls = true,
+			intelephense = {
+				filetypes = { "php" },
+			},
 		}
 
 		local servers_to_install = vim.tbl_filter(function(key)
@@ -51,6 +54,7 @@ return {
 			"cssls",
 			"tailwindcss",
 			"gopls",
+			"intelephense",
 		}
 
 		vim.list_extend(ensure_installed, servers_to_install)
@@ -64,7 +68,9 @@ return {
 				capabilities = capabilities,
 			}, config)
 
-			lspconfig[name].setup(config)
+			-- lspconfig[name].setup(config)
+			vim.lsp.config(name, config)
+			vim.lsp.enable(name)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
@@ -94,6 +100,19 @@ return {
 					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 					javascript = { "prettierd", "prettier", stop_after_first = true },
 					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+					html = { "prettierd", "prettier", stop_after_first = true },
+					php = { "php-cs-fixer" },
+				},
+				formatters = {
+					["php-cs-fixer"] = {
+						command = "php-cs-fixer",
+						args = {
+							"fix",
+							"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
+							"$FILENAME",
+						},
+						stdin = false,
+					},
 				},
 			})
 
