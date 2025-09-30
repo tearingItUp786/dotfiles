@@ -161,14 +161,25 @@ export VOLTA_HOME="$HOME/.volta"
 export GOPATH=$HOME/go
 export KITBIN="$HOME/.kit"
 export KENV="$HOME/.kenv"
-export PATH="$KITBIN/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
 export KITPATH="$HOME/.kit"
 export KENV="$HOME/.kenv"
 export DOCKER="$HOME/.docker"
 # Had to install the test version of neovim version 0.11 to fix issues I'm having
 # export NEOVIM_DEV="$HOME/Downloads/nvim-macos-arm64"
 # export PATH="$NEOVIM_DEV/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
-export PATH="$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
+
+
+# PHP stuff
+# Herd injected PHP 8.4 configuration.
+export HERD_LITE="$HOME/.config/herd-lite"
+export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+export HERD="$HOME/Library/Application Support/Herd" 
+export HERD_PHP_84_INI_SCAN_DIR="$HERD/config/php/84"
+
+
+# export PATH="$KITBIN/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
+export PATH="$HERD/bin:$HERD_LITE/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc'; fi
@@ -178,9 +189,14 @@ if [ -f '/Users/taranveerbains/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 eval "$(zoxide init zsh)"
-# bun completions
-[ -s "/Users/tarabain/.bun/_bun" ] && source "/Users/tarabain/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/taranveerbains/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP 8.5 configuration.
+export HERD_PHP_85_INI_SCAN_DIR="/Users/taranveerbains/Library/Application Support/Herd/config/php/85/"

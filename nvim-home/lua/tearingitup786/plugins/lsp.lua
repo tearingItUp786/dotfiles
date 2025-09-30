@@ -32,7 +32,11 @@ return {
 			tailwindcss = true,
 			ts_ls = true,
 			intelephense = {
+				cmd = { "intelephense", "--stdio" },
 				filetypes = { "php" },
+			},
+			["stimulus-language-server"] = {
+				filetypes = { "blade" },
 			},
 		}
 
@@ -55,6 +59,7 @@ return {
 			"tailwindcss",
 			"gopls",
 			"intelephense",
+			"stimulus-language-server",
 		}
 
 		vim.list_extend(ensure_installed, servers_to_install)
@@ -102,6 +107,7 @@ return {
 					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 					html = { "prettierd", "prettier", stop_after_first = true },
 					php = { "php-cs-fixer" },
+					blade = { "blade-formatter" },
 				},
 				formatters = {
 					["php-cs-fixer"] = {

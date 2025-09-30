@@ -19,11 +19,19 @@ return {
 			},
 			agents = {
 				{
-					name = "Claude 3.7",
+					name = "My Claude Sonnet 4.0",
 					provider = "anthropic",
 					chat = true,
 					command = true,
-					model = { model = "claude-3-7-sonnet-20250219" },
+					model = { model = "claude-sonnet-4-20250514" },
+					system_prompt = "You are a helpful assistant that helps me with my coding related tasks.",
+				},
+				{
+					name = "My Claude Sonnet 4.5",
+					provider = "anthropic",
+					chat = true,
+					command = true,
+					model = { model = "claude-sonnet-4-5-20250929" },
 					system_prompt = "You are a helpful assistant that helps me with my coding related tasks.",
 				},
 			},
