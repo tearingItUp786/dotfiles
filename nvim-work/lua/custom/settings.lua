@@ -35,3 +35,5 @@ o.clipboard = "unnamedplus"
 
 o.spell = true
 o.spelllang = "en_ca"
+
+vim.cmd("highlight SpellBad cterm=undercurl gui=undercurl guisp=Magenta")

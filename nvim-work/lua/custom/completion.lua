@@ -1,4 +1,3 @@
--- import nvim-cmp plugin safely
 local cmp_status, cmp = pcall(require, "cmp")
 if not cmp_status then
 	print("no cmp found")
@@ -20,7 +19,6 @@ if not lspkind_status then
 end
 
 lspkind.init({})
-
 vim.opt.completeopt = "menu,menuone,noselect"
 
 local preferred_sources = {
@@ -32,15 +30,8 @@ local preferred_sources = {
 
 cmp.setup({
 	snippet = {
-		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			print("cmp")
-			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
-			-- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-			-- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -48,7 +39,26 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		-- Add Tab to jump through snippet nodes
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources(preferred_sources, {
 		{ name = "buffer" },

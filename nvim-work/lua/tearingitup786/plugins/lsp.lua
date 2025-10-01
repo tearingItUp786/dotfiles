@@ -21,7 +21,7 @@ return {
 			},
 		})
 
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		local servers = {
 			cssls = true,
@@ -63,7 +63,9 @@ return {
 				capabilities = capabilities,
 			}, config)
 
-			lspconfig[name].setup(config)
+			-- lspconfig[name].setup(config)
+			vim.lsp.config(name, config)
+			vim.lsp.enable(name)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
@@ -93,6 +95,8 @@ return {
 					typescriptreact = { "prettierd" },
 					javascript = { "prettierd" },
 					javascriptreact = { "prettierd" },
+					json = { "prettierd" },
+					html = { "prettierd", "prettier", stop_after_first = true },
 				},
 			})
 
