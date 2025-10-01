@@ -6,6 +6,16 @@ return {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 		-- "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+		config = function()
+			-- Expand the home directory explicitly; tilde is not always expanded by LuaSnip
+			local snippet_path = vim.fn.expand("~/.dotfiles/snippets")
+			if vim.fn.isdirectory(snippet_path) == 1 then
+				-- Load custom vscode-style snippets from our dotfiles directory
+				require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippet_path } })
+			else
+				vim.notify("LuaSnip: snippet directory not found: " .. snippet_path, vim.log.levels.WARN)
+			end
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",

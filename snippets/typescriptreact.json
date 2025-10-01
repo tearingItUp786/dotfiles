@@ -26,7 +26,24 @@
     "body": ["const $1 = useContext($2)$0"],
     "description": "React useContext() hook"
   },
-  "React Function Component with Props": {
+  "react function component with props": {
+    "prefix": "rfc",
+    "body": [
+      "type ${1:${TM_FILENAME_BASE}}Props = {",
+      "  $2",
+      "};",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = ({$3}: ${1:${TM_FILENAME_BASE}}Props) => {",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "};"
+    ],
+    "description": "Create a React Function Component with Props type"
+  },
+  "legacy react function component with props": {
     "prefix": "ewarfc",
     "body": [
       "import * as React from 'react';",
@@ -45,7 +62,7 @@
     ],
     "description": "Create a React Function Component with Props type"
   },
-  "React Component Test Block": {
+  "legacy react component test block": {
     "prefix": "ewartest",
     "body": [
       "import { render, screen } from '@ewa/tests-util';",

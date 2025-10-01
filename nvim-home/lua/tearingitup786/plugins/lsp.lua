@@ -105,6 +105,7 @@ return {
 					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 					javascript = { "prettierd", "prettier", stop_after_first = true },
 					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+					json = { "prettierd" },
 					html = { "prettierd", "prettier", stop_after_first = true },
 					php = { "php-cs-fixer" },
 					blade = { "blade-formatter" },
