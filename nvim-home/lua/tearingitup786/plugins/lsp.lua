@@ -29,7 +29,19 @@ return {
 			eslint = true,
 			gopls = true,
 			lua_ls = true,
-			tailwindcss = true,
+			tailwindcss = {
+				settings = {
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+								{ "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+							},
+						},
+						classAttributes = { "class", "className", "classList", "ngClass" },
+					},
+				},
+			},
 			ts_ls = true,
 			intelephense = {
 				cmd = { "intelephense", "--stdio" },
