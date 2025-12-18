@@ -9,7 +9,28 @@ return {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
-		dashboard = { example = "doom" },
+		dashboard = {
+			enabled = true,
+			sections = {
+				{
+					section = "terminal",
+					cmd = "chafa ~/Pictures/tokyo.png --format symbols --symbols half --size 60x17 --stretch; sleep .1",
+					height = 17,
+					padding = { 0, 1 },
+					pane = 2,
+				},
+				{
+					pane = 1,
+					section = "keys",
+					gap = 1,
+					padding = 2,
+				},
+				{
+					pane = 1,
+					section = "startup",
+				},
+			},
+		},
 		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
