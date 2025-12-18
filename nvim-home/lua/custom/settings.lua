@@ -33,6 +33,8 @@ keymap("n", "gx", "<Plug>(openbrowser-smart-search)", options)
 
 o.clipboard = "unnamedplus"
 
+vim.cmd("highlight SpellBad cterm=undercurl gui=undercurl guisp=Magenta")
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "netrw" },
 	group = vim.api.nvim_create_augroup("NetrwOnRename", { clear = true }),
