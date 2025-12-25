@@ -42,7 +42,8 @@ return {
 					},
 				},
 			},
-			ts_ls = true,
+			-- ts_ls = true,
+			tsgo = true,
 			intelephense = {
 				cmd = { "intelephense", "--stdio" },
 				filetypes = { "php" },
@@ -63,7 +64,8 @@ return {
 
 		require("mason").setup()
 		local ensure_installed = {
-			"ts_ls",
+			-- "ts_ls",
+			"tsgo",
 			"lua_ls",
 			"eslint",
 			"html",

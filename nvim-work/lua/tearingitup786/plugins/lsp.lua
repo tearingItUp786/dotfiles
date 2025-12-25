@@ -36,7 +36,8 @@ return {
 					},
 				},
 			},
-			ts_ls = true,
+			-- ts_ls = true,
+			tsgo = true,
 		}
 
 		local servers_to_install = vim.tbl_filter(function(key)
@@ -50,7 +51,8 @@ return {
 
 		require("mason").setup()
 		local ensure_installed = {
-			"ts_ls",
+			-- "ts_ls",
+			"tsgo",
 			"lua_ls",
 			"eslint",
 			"html",
