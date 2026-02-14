@@ -15,6 +15,17 @@ return {
 		-- Required for `opts.events.reload`.
 		vim.o.autoread = true
 
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "opencode_terminal",
+			callback = function(event)
+				local opts = { buffer = event.buf, silent = true }
+				vim.keymap.set("t", "<C-h>", "<C-\\><C-n><cmd>NvimTmuxNavigateLeft<CR>", vim.tbl_extend("force", opts, { desc = "Exit opencode left" }))
+				vim.keymap.set("t", "<C-j>", "<C-\\><C-n><cmd>NvimTmuxNavigateDown<CR>", vim.tbl_extend("force", opts, { desc = "Exit opencode down" }))
+				vim.keymap.set("t", "<C-k>", "<C-\\><C-n><cmd>NvimTmuxNavigateUp<CR>", vim.tbl_extend("force", opts, { desc = "Exit opencode up" }))
+				vim.keymap.set("t", "<C-l>", "<C-\\><C-n><cmd>NvimTmuxNavigateRight<CR>", vim.tbl_extend("force", opts, { desc = "Exit opencode right" }))
+			end,
+		})
+
 		-- Leader-based keymaps.
 		vim.keymap.set({ "n", "x" }, "<leader>oca", function()
 			require("opencode").ask("@this: ", { submit = true })
