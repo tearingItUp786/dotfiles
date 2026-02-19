@@ -22,6 +22,7 @@ lspkind.init({})
 vim.opt.completeopt = "menu,menuone,noselect"
 
 local preferred_sources = {
+	{ name = "laravel" }, -- laravel.nvim completion source
 	{ name = "nvim_lsp" }, -- lsp
 	{ name = "luasnip" }, -- snippets
 	{ name = "copilot" }, -- copilot

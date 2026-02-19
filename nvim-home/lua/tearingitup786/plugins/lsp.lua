@@ -48,7 +48,8 @@ return {
 				cmd = { "intelephense", "--stdio" },
 				filetypes = { "php" },
 			},
-			["stimulus-language-server"] = {
+			stimulus_ls = {
+				manual_install = true,
 				filetypes = { "blade" },
 			},
 		}
@@ -83,6 +84,10 @@ return {
 			if config == true then
 				config = {}
 			end
+			if type(config) == "table" then
+				config = vim.tbl_deep_extend("force", {}, config)
+				config.manual_install = nil
+			end
 			config = vim.tbl_deep_extend("force", {}, {
 				capabilities = capabilities,
 			}, config)
@@ -90,62 +95,63 @@ return {
 			-- lspconfig[name].setup(config)
 			vim.lsp.config(name, config)
 			vim.lsp.enable(name)
-
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(args)
-					local bufnr = args.buf
-					local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
-
-					vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0 })
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-					vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-
-					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = 0 })
-					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
-				end,
-			})
-
-			-- Autoformatting Setup
-			local conform = require("conform")
-			conform.setup({
-				stop_after_first = true,
-				formatters_by_ft = {
-					lua = { "stylua", stop_after_first = true },
-					css = { "prettierd", "prettier", stop_after_first = true },
-					typescript = { "prettierd", "prettier", stop_after_first = true },
-					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-					javascript = { "prettierd", "prettier", stop_after_first = true },
-					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-					json = { "prettierd" },
-					html = { "prettierd", "prettier", stop_after_first = true },
-					php = { "php-cs-fixer" },
-					blade = { "blade-formatter" },
-				},
-				formatters = {
-					["php-cs-fixer"] = {
-						command = "php-cs-fixer",
-						args = {
-							"fix",
-							"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
-							"$FILENAME",
-						},
-						stdin = false,
-					},
-				},
-			})
-
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				callback = function(args)
-					require("conform").format({
-						bufnr = args.buf,
-						lsp_fallback = false,
-						quiet = true,
-					})
-				end,
-			})
 		end
+
+		local lsp_attach_group = vim.api.nvim_create_augroup("HomeLspAttach", { clear = true })
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = lsp_attach_group,
+			callback = function(args)
+				vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = args.buf })
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = args.buf })
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = args.buf })
+				vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = args.buf })
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf })
+
+				vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = args.buf })
+				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = args.buf })
+			end,
+		})
+
+		-- Autoformatting Setup
+		local conform = require("conform")
+		conform.setup({
+			stop_after_first = true,
+			formatters_by_ft = {
+				lua = { "stylua", stop_after_first = true },
+				css = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd" },
+				html = { "prettierd", "prettier", stop_after_first = true },
+				php = { "php-cs-fixer" },
+				blade = { "blade-formatter" },
+			},
+			formatters = {
+				["php-cs-fixer"] = {
+					command = "php-cs-fixer",
+					args = {
+						"fix",
+						"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
+						"$FILENAME",
+					},
+					stdin = false,
+				},
+			},
+		})
+
+		local format_group = vim.api.nvim_create_augroup("HomeFormatOnSave", { clear = true })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = format_group,
+			callback = function(args)
+				require("conform").format({
+					bufnr = args.buf,
+					lsp_fallback = false,
+					quiet = true,
+				})
+			end,
+		})
 	end,
 }
