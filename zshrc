@@ -112,6 +112,12 @@ alias nvim-work="NVIM_APPNAME=work nvim"
 alias nvim="nvim-home"
 alias cd="z"
 alias pn="pnpm"
+alias -s md="bat"
+alias -s png="open"
+alias -s jpg="open"
+alias -s json="jless"
+alias -s js="$EDITOR"
+alias -s ts="$EDITOR"
 
 function nvims() {
   items=("home" "work" "default")
