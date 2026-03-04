@@ -92,7 +92,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -118,6 +118,7 @@ alias -s jpg="open"
 alias -s json="jless"
 alias -s js="$EDITOR"
 alias -s ts="$EDITOR"
+alias -g C='| pbcopy'
 
 function nvims() {
   items=("home" "work" "default")
