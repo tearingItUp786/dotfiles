@@ -32,3 +32,4 @@ vim.g.mapleader = " "
 keymap("n", "gx", "<Plug>(openbrowser-smart-search)", options)
 
 o.clipboard = "unnamedplus"
+o.exrc = true  -- source per-project .nvim.lua files
