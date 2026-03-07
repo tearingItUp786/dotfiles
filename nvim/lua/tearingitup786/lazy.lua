@@ -211,4 +211,13 @@ return require("lazy").setup({
 			require("supermaven-nvim").setup({})
 		end,
 	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup({
+				render = "background",  -- colored square swatch rendered as background highlight
+				enable_tailwind = true, -- resolve class names via Tailwind LSP color information
+			})
+		end,
+	},
 })
