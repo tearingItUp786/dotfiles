@@ -20,6 +20,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.termguicolors = true -- must be set before plugin configs run
+
 -- Set up lazy, and load my `lua/custom/plugins/` folder
 require("lazy").setup({ import = "tearingitup786/plugins" }, {
 	change_detection = {
