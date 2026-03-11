@@ -40,6 +40,7 @@ return {
 				explorer = { -- HERE!
 					enabled = true,
 					hidden = true,
+					ignored = true,
 					auto_close = false,
 					win = {
 						list = {
