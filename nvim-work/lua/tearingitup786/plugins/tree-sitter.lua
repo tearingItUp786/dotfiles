@@ -2,22 +2,12 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			-- A list of parser names, or "all"
+		require("nvim-treesitter").setup({
 			ensure_installed = "all",
-
-			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
-
-			ignore_install = { "" },
-
-			-- Automatically install missing parsers when entering buffer
-			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-			auto_install = true,
+			auto_install = false,
 			highlight = {
-				-- `false` will disable the whole extension
 				enable = true,
-				additional_vim_regex_highlighting = true,
 			},
 		})
 	end,
