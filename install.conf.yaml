@@ -17,6 +17,7 @@
     ~/Desktop/editor-cheatsheet.md: editor-cheatsheet.md
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/ghostty/config: ghostty.conf
+    ~/.config/opencode/AGENTS.md: AGENTS.md
 
 - shell:
   - 
