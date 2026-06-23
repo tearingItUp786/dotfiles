@@ -1,24 +1,73 @@
+local parsers = {
+	"bash",
+	"blade",
+	"css",
+	"go",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"php",
+	"query",
+	"scss",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"vimdoc",
+	"yaml",
+}
+
+local filetypes = {
+	"bash",
+	"blade",
+	"css",
+	"go",
+	"html",
+	"javascript",
+	"javascriptreact",
+	"json",
+	"jsonc",
+	"lua",
+	"markdown",
+	"php",
+	"query",
+	"scss",
+	"sh",
+	"toml",
+	"tsx",
+	"typescript",
+	"typescriptreact",
+	"vim",
+	"vimdoc",
+	"yaml",
+	"zsh",
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			-- A list of parser names, or "all"
-			ensure_installed = "all",
+		local treesitter = require("nvim-treesitter")
 
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
+		treesitter.setup({
+			install_dir = vim.fn.stdpath("data") .. "/site",
+		})
+		vim.treesitter.language.register("bash", { "sh", "zsh" })
+		vim.treesitter.language.register("json", "jsonc")
 
-			ignore_install = { "" },
+		treesitter.install(parsers)
 
-			-- Automatically install missing parsers when entering buffer
-			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-			auto_install = true,
-			highlight = {
-				-- `false` will disable the whole extension
-				enable = true,
-				additional_vim_regex_highlighting = true,
-			},
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("TearingItUpTreesitter", { clear = true }),
+			pattern = filetypes,
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 	end,
 }
