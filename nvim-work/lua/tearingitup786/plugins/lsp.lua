@@ -10,7 +10,7 @@ return {
 	config = function()
 		-- we need to do this so that we stop seeing this issue
 		-- https://github.com/neovim/neovim/issues/26520
-		local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
+		local capabilities = require("cmp_nvim_lsp").default_capabilities({
 			workspace = {
 				didChangeWatchedFiles = {
 					dynamicRegistration = false,

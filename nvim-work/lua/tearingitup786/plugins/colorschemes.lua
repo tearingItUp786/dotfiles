@@ -11,7 +11,7 @@ return {
 	-- 				light = "latte",
 	-- 				dark = "macchiato",
 	-- 			},
-	-- 			transparent_background = true, -- disables setting the background color.
+	-- 			transparent_background = false, -- disables setting the background color.
 	-- 			show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 	-- 			term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 	-- 			dim_inactive = {
@@ -38,7 +38,6 @@ return {
 	-- 				-- miscs = {}, -- Uncomment to turn off hard-coded styles
 	-- 			},
 	-- 			color_overrides = {},
-	-- 			custom_highlights = {},
 	-- 			default_integrations = true,
 	-- 			integrations = {
 	-- 				cmp = true,
@@ -71,6 +70,19 @@ return {
 			})
 
 			vim.cmd([[colorscheme tokyonight]])
+
+			vim.api.nvim_set_hl(0, "@function", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@function.call", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@method.call", { link = "Function" })
+			vim.api.nvim_set_hl(0, "typescriptFuncCallArg", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@method", { link = "Function" })
+			vim.api.nvim_set_hl(0, "TSFunction", { link = "Function" })
+			vim.api.nvim_set_hl(0, "TSFunctionBuiltin", { link = "Function" })
+
+			vim.api.nvim_set_hl(0, "@lsp.type.function", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@lsp.type.method", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary", { link = "Function" })
+			vim.api.nvim_set_hl(0, "@lsp.typemod.variable.callable", { link = "Function" })
 		end,
 	},
 	-- {
