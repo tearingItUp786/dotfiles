@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting git sudo)
+plugins=(zsh-syntax-highlighting git sudo zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,7 +109,6 @@ fi
 
 alias nvim-home="NVIM_APPNAME=home nvim"
 alias nvim-work="NVIM_APPNAME=work nvim"
-alias nvim="nvim-home"
 alias cd="z"
 alias pn="pnpm"
 alias -s md="bat"
@@ -136,7 +135,7 @@ bindkey -s ^a "nvims\n"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
    export NVM_DIR="$HOME/.nvm"
     [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
@@ -149,19 +148,7 @@ alias cheatsheet="nvim ~/Desktop/editor-cheatsheet.md"
 alias gcopybranch="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
 alias notifyme="ntfy publish tearingitup786 $1"
 alias copytar="find . -maxdepth 1 -name \"*.tgz\" -exec realpath {} \; | pbcopy"
-jesto() {
-  npx jest --config=legacy.jest.config.ts "$@"
-}
-
-ujesto() {
-  npx jest --updateSnapshot --config=legacy.jest.config.ts "$@"
-}
-
-alias twiliolastmessage="twilio api:core:messages:list --limit 1 --properties sid -o json | jq -r '.[0].sid' | xargs -I {} twilio api:core:messages:fetch --sid {} --properties body"
-
-export ANTHROPIC_API_KEY=$(op read op://private/Claude/credential --no-newline)
-export OPENAI_API_KEY=$(op read op://private/OpenAIKey/credential --no-newline)
-export GEMINI_API_KEY=$(op read op://private/GeminiAPIKey/credential --no-newline)
+alias ghostty="$HOME/Applications/Ghostty.app/Contents/MacOS/ghostty"
 export VOLTA_FEATURE_PNPM=1
 export NODE_TLS_REJECT_UNAUTHORIZED=1
 export VOLTA_HOME="$HOME/.volta"
@@ -169,24 +156,14 @@ export GOPATH=$HOME/go
 export KITBIN="$HOME/.kit"
 export KENV="$HOME/.kenv"
 export KITPATH="$HOME/.kit"
-export KENV="$HOME/.kenv"
+# export KENV="$HOME/.kenv"
 export DOCKER="$HOME/.docker"
 # Had to install the test version of neovim version 0.11 to fix issues I'm having
 # export NEOVIM_DEV="$HOME/Downloads/nvim-macos-arm64"
 # export PATH="$NEOVIM_DEV/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
 
-
-# PHP stuff
-# Herd injected PHP 8.4 configuration.
-export HERD_LITE="$HOME/.config/herd-lite"
-export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-
-export HERD="$HOME/Library/Application Support/Herd" 
-export HERD_PHP_84_INI_SCAN_DIR="$HERD/config/php/84"
-
-
 # export PATH="$KITBIN/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$PATH"
-export PATH="$HERD/bin:$HERD_LITE/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
+export PATH="$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/taranveerbains/google-cloud-sdk/path.zsh.inc'; fi
@@ -197,13 +174,21 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 eval "$(zoxide init zsh)"
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export COLIMA_CPU="${COLIMA_CPU:-4}"
+export COLIMA_MEMORY="${COLIMA_MEMORY:-8}"
+export COLIMA_DISK="${COLIMA_DISK:-60}"
 
+colima-up() {
+  colima start --cpu "$COLIMA_CPU" --memory "$COLIMA_MEMORY" --disk "$COLIMA_DISK" \
+    --vm-type vz --vz-rosetta --mount-type virtiofs "$@"
+}
 
+alias lzd='lazydocker'
 
-# Herd injected PHP 8.4 configuration.
-export HERD_PHP_84_INI_SCAN_DIR="/Users/taranveerbains/Library/Application Support/Herd/config/php/84/"
-
-
-# Herd injected PHP 8.5 configuration.
-export HERD_PHP_85_INI_SCAN_DIR="/Users/taranveerbains/Library/Application Support/Herd/config/php/85/"
+# Work machines are named CAMG*. Anything else is treated as home.
+case "$(scutil --get LocalHostName)" in
+  CAMG*) source ~/.dotfiles/zshrc.work ;;
+  *)     source ~/.dotfiles/zshrc.home ;;
+esac

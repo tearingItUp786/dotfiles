@@ -50,8 +50,25 @@ https://www.youtube.com/watch?v=LkHjJlSgKZY
 
 Work forces use to use copilot and not supermaven. I'll need to follow [this repo](https://github.com/github/copilot.vim)
 
+## Docker (Colima)
+
+Docker Desktop isn't used. Colima + the Docker CLI are installed via the `Brewfile`.
+
+1. Create `~/.docker/config.json` (intentionally untracked, since `docker login` writes to it):
+   ```json
+   { "cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"] }
+   ```
+2. `colima-up` starts the VM (defaults: 4 CPU / 8 GB RAM / 60 GB disk). Override with `COLIMA_CPU`, `COLIMA_MEMORY`, `COLIMA_DISK`, or pass flags, e.g. `colima-up --memory 12`.
+3. `lzd` opens lazydocker.
+4. `brew services start colima` to autostart at login.
+
 ## tmux
 
 1. `brew install tmux`
 2. Launch a tmux session - `tmux`
 3. Run `C-A I` (C is Control) (the link)[https://github.com/tmux-plugins/tpm#key-bindings]
+
+## Work / home split
+
+`zshrc` is shared. It ends by sourcing `zshrc.work` when the hostname matches `CAMG*`, otherwise `zshrc.home`.
+Work secrets live in untracked `~/.secrets.work` (exports for `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `TAVILY_API_KEY`, `JIRA_API_TOKEN`); home uses 1Password `op read`.

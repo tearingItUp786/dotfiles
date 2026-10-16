@@ -1,0 +1,28 @@
+alias nvim="NVIM_APPNAME=work nvim"
+export EDITOR='vim'
+export PATH="/opt/nvim-0.11.7/bin:$PATH"
+
+alias j21='sdk use java 21.0.0.0+35-tem'
+alias j25='sdk use java 25.0.3.0+9-tem'
+
+resetjdtls() {
+  rm -rf ~/.cache/work/jdtls/workspace/proj_*
+  echo "jdtls workspaces cleared; restart nvim"
+}
+
+jesto() {
+  npx jest --config=legacy.jest.config.ts "$@"
+}
+
+ujesto() {
+  npx jest --updateSnapshot --config=legacy.jest.config.ts "$@"
+}
+
+# Hermes Agent command
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
+
+[[ -f "$HOME/.secrets.work" ]] && source "$HOME/.secrets.work"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

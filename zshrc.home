@@ -1,0 +1,15 @@
+alias nvim="nvim-home"
+
+alias twiliolastmessage="twilio api:core:messages:list --limit 1 --properties sid -o json | jq -r '.[0].sid' | xargs -I {} twilio api:core:messages:fetch --sid {} --properties body"
+
+export ANTHROPIC_API_KEY=$(op read op://private/Claude/credential --no-newline)
+export OPENAI_API_KEY=$(op read op://private/OpenAIKey/credential --no-newline)
+export GEMINI_API_KEY=$(op read op://private/GeminiAPIKey/credential --no-newline)
+
+# Herd injected PHP configuration.
+export HERD_LITE="$HOME/.config/herd-lite"
+export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+export HERD="$HOME/Library/Application Support/Herd"
+export HERD_PHP_84_INI_SCAN_DIR="$HERD/config/php/84"
+export HERD_PHP_85_INI_SCAN_DIR="$HERD/config/php/85"
+export PATH="$HERD/bin:$HERD_LITE/bin:$PATH"
