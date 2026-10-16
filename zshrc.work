@@ -1,9 +1,27 @@
 alias nvim="NVIM_APPNAME=work nvim"
-export EDITOR='vim'
+
+export EDITOR='nvim'
 export PATH="/opt/nvim-0.11.7/bin:$PATH"
 
+export NODE_TLS_REJECT_UNAUTHORIZED=1
+export COLIMA_CPU="${COLIMA_CPU:-4}"
+export COLIMA_MEMORY="${COLIMA_MEMORY:-8}"
+export COLIMA_DISK="${COLIMA_DISK:-60}"
+
+alias gcopybranch="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
+alias notifyme="ntfy publish tearingitup786 $1"
+alias copytar="find . -maxdepth 1 -name \"*.tgz\" -exec realpath {} \; | pbcopy"
 alias j21='sdk use java 21.0.0.0+35-tem'
 alias j25='sdk use java 25.0.3.0+9-tem'
+
+
+
+colima-up() {
+  colima start --cpu "$COLIMA_CPU" --memory "$COLIMA_MEMORY" --disk "$COLIMA_DISK" \
+    --vm-type vz --vz-rosetta --mount-type virtiofs "$@"
+}
+
+alias lzd='lazydocker'
 
 resetjdtls() {
   rm -rf ~/.cache/work/jdtls/workspace/proj_*

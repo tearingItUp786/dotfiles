@@ -145,12 +145,10 @@ bindkey -s ^a "nvims\n"
 alias src="source ~/.zshrc"
 alias esrc="nvim ~/.zshrc"
 alias cheatsheet="nvim ~/Desktop/editor-cheatsheet.md"
-alias gcopybranch="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
-alias notifyme="ntfy publish tearingitup786 $1"
-alias copytar="find . -maxdepth 1 -name \"*.tgz\" -exec realpath {} \; | pbcopy"
+
 alias ghostty="$HOME/Applications/Ghostty.app/Contents/MacOS/ghostty"
 export VOLTA_FEATURE_PNPM=1
-export NODE_TLS_REJECT_UNAUTHORIZED=1
+
 export VOLTA_HOME="$HOME/.volta"
 export GOPATH=$HOME/go
 export KITBIN="$HOME/.kit"
@@ -158,6 +156,7 @@ export KENV="$HOME/.kenv"
 export KITPATH="$HOME/.kit"
 # export KENV="$HOME/.kenv"
 export DOCKER="$HOME/.docker"
+#
 # Had to install the test version of neovim version 0.11 to fix issues I'm having
 # export NEOVIM_DEV="$HOME/Downloads/nvim-macos-arm64"
 # export PATH="$NEOVIM_DEV/bin:$KITPATH/bin:$KENV/bin:$GOPATH/bin:$VOLTA_HOME/bin:$DOCKER/bin:$PATH"
@@ -176,16 +175,6 @@ eval "$(zoxide init zsh)"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export COLIMA_CPU="${COLIMA_CPU:-4}"
-export COLIMA_MEMORY="${COLIMA_MEMORY:-8}"
-export COLIMA_DISK="${COLIMA_DISK:-60}"
-
-colima-up() {
-  colima start --cpu "$COLIMA_CPU" --memory "$COLIMA_MEMORY" --disk "$COLIMA_DISK" \
-    --vm-type vz --vz-rosetta --mount-type virtiofs "$@"
-}
-
-alias lzd='lazydocker'
 
 # Work machines are named CAMG*. Anything else is treated as home.
 case "$(scutil --get LocalHostName)" in
