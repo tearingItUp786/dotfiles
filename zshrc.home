@@ -2,9 +2,9 @@ alias nvim="nvim-home"
 
 alias twiliolastmessage="twilio api:core:messages:list --limit 1 --properties sid -o json | jq -r '.[0].sid' | xargs -I {} twilio api:core:messages:fetch --sid {} --properties body"
 
-export ANTHROPIC_API_KEY=$(op read op://private/Claude/credential --no-newline)
-export OPENAI_API_KEY=$(op read op://private/OpenAIKey/credential --no-newline)
-export GEMINI_API_KEY=$(op read op://private/GeminiAPIKey/credential --no-newline)
+[[ -n $ANTHROPIC_API_KEY ]] || export ANTHROPIC_API_KEY=$(op read op://private/ClaudeV2/credential --no-newline)
+[[ -n $OPENAI_API_KEY ]] || export OPENAI_API_KEY=$(op read op://private/OpenAIKey/credential --no-newline)
+[[ -n $GEMINI_API_KEY ]] || export GEMINI_API_KEY=$(op read op://private/GeminiAPIKey/credential --no-newline)
 
 # Herd injected PHP configuration.
 export HERD_LITE="$HOME/.config/herd-lite"
